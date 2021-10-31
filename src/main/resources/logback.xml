@@ -1,0 +1,28 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <logger name="com.mchange.v2" level="warn"/>
+    <logger name="io.netty" level="warn"/>
+    <logger name="io.vertx" level="info"/>
+    <logger name="org.parseplatform" level="debug"/>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+        <!-- uncomment the line below to send debug-level logs to Sentry -->
+        <!--
+        <appender-ref ref="Sentry"/>
+        -->
+    </root>
+
+</configuration>
